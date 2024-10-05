@@ -6,6 +6,30 @@
 #+STARTUP:    align fold nodlcheck hidestars oddeven lognotestate entitiespretty
 #+CATEGORY:   readme
 
-* fedora-emacs
-Emacs Docker Image based on Fedora. To be used for running elisp batch
-programming.
+* emacs-container
+Emacs Docker Image based on various linux distributions
+
+** Domain
+This image is created for running elisp batch programs in container
+environments.
+
+Currently supported GNU/Linux distributions are:
+- fedora
+- debian
+- alpine
+
+** Engineering
+
+*** Prerequisites
+- podman
+- docker
+
+*** Building the container image
+#+begin_src bash
+  BUILDER=docker make all
+#+end_src
+
+*** Pushing the image to docker container repository
+#+begin_src bash
+  BUILDER=docker make install
+#+end_src
