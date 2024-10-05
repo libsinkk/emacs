@@ -1,7 +1,7 @@
 .DEFAULT_GOAL=help
 
 pwdname := $(shell basename `pwd`)
-imagename := "ksinkar/fedora-emacs:40"
+imagename := "ksinkar/emacs:fedora40"
 
 BUILDER ?= podman
 
