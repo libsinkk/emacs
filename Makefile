@@ -3,7 +3,7 @@
 pwdname := $(shell basename `pwd`)
 imagename := "ksinkar/fedora-emacs:40"
 
-BUILDER := podman
+BUILDER ?= podman
 
 all: Containerfile             ## make all the top-level targets the makefile knows about
 	$(BUILDER) build -t $(imagename)  -f Containerfile .
