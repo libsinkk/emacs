@@ -1,0 +1,18 @@
+build:
+  image: docker:cli
+  stage: build
+  services:
+    - docker:dind
+  variables:
+    IMAGE_TAG: $CI_REGISTRY_IMAGE:$CI_COMMIT_REF_SLUG
+    ALPINE_TAG: alpine3
+    DEBIAN_TAG: debian12
+    FEDORA_TAG: fedora40
+  script:
+    - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - docker build --pull -f alpine/Containerfile -t $CI_REGISTRY_IMAGE:$ALPINE_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$ALPINE_TAG
+    - docker build --pull -f debian/Containerfile -t $CI_REGISTRY_IMAGE:$DEBIAN_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$DEBIAN_TAG
+    - docker build --pull -f fedora/Containerfile -t $CI_REGISTRY_IMAGE:$FEDORA_TAG .
+    - docker push $CI_REGISTRY_IMAGE:$FEDORA_TAG
