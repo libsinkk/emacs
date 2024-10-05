@@ -1,4 +1,4 @@
-FROM fedora:40
+FROM ksinkar/make:fedora40
 
 RUN dnf upgrade --assumeyes && \
-    dnf install --assumeyes emacs make
+    dnf install --assumeyes emacs

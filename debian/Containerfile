@@ -1,5 +1,5 @@
-FROM debian:12
+FROM ksinkar/make:debian12
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install emacs make -y
+    apt-get install emacs -y

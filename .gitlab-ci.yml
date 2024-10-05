@@ -10,9 +10,12 @@ build:
     FEDORA_TAG: fedora40
   script:
     - echo "$CI_REGISTRY_PASSWORD" | docker login $CI_REGISTRY -u $CI_REGISTRY_USER --password-stdin
+    - sed -i 's_ksinkar/make_registry.gitlab.com/libsinkk/kontainers/make_' alpine/Containerfile
     - docker build --pull -f alpine/Containerfile -t $CI_REGISTRY_IMAGE:$ALPINE_TAG .
     - docker push $CI_REGISTRY_IMAGE:$ALPINE_TAG
+    - sed -i 's_ksinkar/make_registry.gitlab.com/libsinkk/kontainers/make_' debian/Containerfile
     - docker build --pull -f debian/Containerfile -t $CI_REGISTRY_IMAGE:$DEBIAN_TAG .
     - docker push $CI_REGISTRY_IMAGE:$DEBIAN_TAG
+    - sed -i 's_ksinkar/make_registry.gitlab.com/libsinkk/kontainers/make_' fedora/Containerfile
     - docker build --pull -f fedora/Containerfile -t $CI_REGISTRY_IMAGE:$FEDORA_TAG .
     - docker push $CI_REGISTRY_IMAGE:$FEDORA_TAG
