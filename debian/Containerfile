@@ -1,4 +1,4 @@
-FROM ksinkar/make:debian12
+FROM ksinkar/make:debian13
 
 RUN apt-get update -y && \
     apt-get upgrade -y && \
