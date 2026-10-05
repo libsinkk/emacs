@@ -1,0 +1,15 @@
+---
+name: make on Debian
+
+on:
+  push:
+    tags:             # Pattern matched against refs/tags
+    - 'debian*'           # Push events to every tag not containing /
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/container-build.yml
+    with:
+      distro: debian
+    secrets: inherit

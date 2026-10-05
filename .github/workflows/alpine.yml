@@ -1,0 +1,17 @@
+---
+name: make on Alpine
+
+# Configures this workflow to run every time a tag is pushed
+
+on:
+  push:
+    tags:             # Pattern matched against refs/tags
+    - 'alpine*'           # Push events to every tag not containing /
+  workflow_dispatch:
+
+jobs:
+  call-workflow:
+    uses: ./.github/workflows/container-build.yml
+    with:
+      distro: alpine
+    secrets: inherit
